@@ -1,7 +1,10 @@
 import fetch from 'node-fetch';
+import dotenv from 'dotenv'
+dotenv.config();
 
-const apiKey = '00a85a411c4ce18ee457fad05799621a';
-const accessToken = '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';
+const { ACCEESS_TOKEN } = process.env;
+
+const accessToken = ACCEESS_TOKEN;
 const store = 'testonka3';
 const hostName = store + '.myshopify.com';
 const apiVersion = '2021-01';
@@ -11,17 +14,66 @@ const shopGraphQl = 'https://' + hostName + apiLocation + apiVersion + '/graphql
 
 const url = shopGraphQl;
 
+// const title = Math.random().toPrecision(3) * 100;
+const title = "aaaa";
+
+// const body = {
+//   query: `mutation {
+//     productCreate(input: {title: "Awsome"}) {
+//         product {
+//           id
+//           title
+//         }
+//       }
+//     }
+//   ` 
+// };
+
+// const body = {
+//   query: `{
+//       shop {
+//           name
+//         }
+//     }`
+// };
+
+// const body = {
+//   query: `{
+//     products(first:1) {
+//       edges {
+//         node {
+//           title
+//           id
+//           variants(first:1) {
+//             edges {
+//               node {
+//                 id
+//               }
+//             }
+//           }
+//         } 
+//       }
+//     }
+//   }`
+// };
+
+
 const body = {
-    query: `{
-      products(first:10) {
-        edges {
-          node {
-            title
-          } 
+  query: `mutation productUpdate($input: ProductInput!) {
+      productUpdate(input: $input) {
+        product {
+          id
+          title
         }
       }
     }
-    `
+  ` ,
+  variables: {
+    "input": {
+      "id": "gid://shopify/Product/7595691737326",
+      "title": title
+    }
+  }
 };
 
 fetch (
