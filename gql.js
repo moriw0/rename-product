@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import dotenv from 'dotenv'
+import { faker } from '@faker-js/faker';
 dotenv.config();
 
 const { ACCEESS_TOKEN } = process.env;
@@ -14,8 +15,7 @@ const shopGraphQl = 'https://' + hostName + apiLocation + apiVersion + '/graphql
 
 const url = shopGraphQl;
 
-// const title = Math.random().toPrecision(3) * 100;
-const title = "aaaa";
+const randomTitle = faker.commerce.productName();
 
 // const body = {
 //   query: `mutation {
@@ -71,7 +71,7 @@ const body = {
   variables: {
     "input": {
       "id": "gid://shopify/Product/7595691737326",
-      "title": title
+      "title": randomTitle
     }
   }
 };

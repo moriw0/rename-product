@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.7",
     "@shopify/shopify-api": "^2.1.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3"
