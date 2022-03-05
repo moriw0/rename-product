@@ -1,6 +1,8 @@
 import cron from 'node-cron';
 import { renameFunc } from './gql.js';
 
-cron.schedule('*/5 * * * * *', () => renameFunc());
+console.log('start cron-job')
+// cron.schedule('*/5 * * * * *', () => renameFunc());
+cron.schedule('* * * * *', () => renameFunc());
 
 
