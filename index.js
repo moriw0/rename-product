@@ -52,6 +52,6 @@ app.get('/auth/callback', async (req, res) => {
   res.redirect(`https://${shopSession.shop}//admin/apps/oauth-node-1`);
 });
 
-app.listen(port, () =>{
+app.listen(process.env.PORT || port, () =>{
   console.log(`running at http://${host}:${port}`);
 });
