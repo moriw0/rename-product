@@ -3,21 +3,12 @@ import dotenv from 'dotenv'
 import { faker } from '@faker-js/faker';
 dotenv.config();
 
-const { ACCEESS_TOKEN } = process.env;
+const { ACCEESS_TOKEN, SHOP } = process.env;
 
-const accessToken = ACCEESS_TOKEN;
-const store = 'testonka3';
-const hostName = store + '.myshopify.com';
-const apiVersion = '2021-01';
-const apiLocation = '/admin/api/';
+const url = `https://${SHOP}/admin/api/2021-01/graphql.json`;
 
-const shopGraphQl = 'https://' + hostName + apiLocation + apiVersion + '/graphql.json';
-
-const url = shopGraphQl;
-
-export function renameFunc() { 
+export function renameFunction(product_id) { 
   const randomTitle = faker.commerce.productName();
-  console.log(randomTitle);
   const body = {
     query: `mutation productUpdate($input: ProductInput!) {
         productUpdate(input: $input) {
@@ -30,7 +21,7 @@ export function renameFunc() {
     ` ,
     variables: {
       "input": {
-        "id": "gid://shopify/Product/7595691737326",
+        "id": product_id,
         "title": randomTitle
       }
     }
@@ -42,7 +33,7 @@ export function renameFunc() {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-Shopify-Access-Token" : accessToken
+            "X-Shopify-Access-Token" : ACCEESS_TOKEN
         },
         body: JSON.stringify(body)
     }
@@ -52,7 +43,7 @@ export function renameFunc() {
     return res.json();
   })
   .then(json => {
-    console.log("data returned:\n", json);
+    console.log("renamed:\n", json.data.productUpdate.product.title);
   })
   .catch(err => console.error(err));; 
 };
