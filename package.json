@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "fetch": "node cron.js"
+    "rename": "node excute.js"
   },
   "keywords": [],
   "author": "",
