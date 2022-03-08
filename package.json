@@ -2,10 +2,10 @@
   "name": "backend2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "auth.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node auth.js",
     "rename": "node excute.js"
   },
   "keywords": [],

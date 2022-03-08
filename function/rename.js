@@ -7,7 +7,9 @@ const { ACCEESS_TOKEN, SHOP } = process.env;
 
 const url = `https://${SHOP}/admin/api/2021-01/graphql.json`;
 
-export function renameFunction(product_id) { 
+export const renameFunction = async (product_id) => { 
+  console.log('renaming product...\n')
+
   const randomTitle = faker.commerce.productName();
   const body = {
     query: `mutation productUpdate($input: ProductInput!) {
@@ -27,7 +29,7 @@ export function renameFunction(product_id) {
     }
   };
 
-  fetch (
+  await fetch (
     url,
     {
         method: "POST",
@@ -43,7 +45,7 @@ export function renameFunction(product_id) {
     return res.json();
   })
   .then(json => {
-    console.log("renamed:\n", json.data.productUpdate.product.title);
+    console.log(`renamed:\n  ${json.data.productUpdate.product.title}`);
   })
   .catch(err => console.error(err));; 
 };

@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 const host = '127.0.0.1';
-const port = '3000';
+const port = process.env.PORT || 3000;
 
 const {API_KEY, API_SECRET_KEY, SCOPES, HOST } = process.env;
 
@@ -52,6 +52,6 @@ app.get('/auth/callback', async (req, res) => {
   res.redirect(`https://${shopSession.shop}//admin/apps/oauth-node-1`);
 });
 
-app.listen(process.env.PORT || port, () =>{
+app.listen(port, () =>{
   console.log(`running at http://${host}:${port}`);
 });
