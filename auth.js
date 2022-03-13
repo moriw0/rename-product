@@ -1,6 +1,6 @@
 import express from 'express';
-import { Shopify } from '@shopify/shopify-api'
-import dotenv from 'dotenv'
+import { Shopify } from '@shopify/shopify-api';
+import dotenv from 'dotenv';
 dotenv.config();
 
 const host = '127.0.0.1';
@@ -22,7 +22,7 @@ const app = express();
 
 app.get('/', async (req, res) => {
   if (typeof shops[req.query.shop] !== 'undefined') {
-  res.send('Hello tonka2')
+    res.send('Hello tonka2');
   } else {
     res.redirect(`/auth?shop=${req.query.shop}`);
   }

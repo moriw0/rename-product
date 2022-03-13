@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 dotenv.config();
 
 const { ACCEESS_TOKEN, SHOP} = process.env;
@@ -39,8 +39,8 @@ export const fetchProductId = async () => {
   .then(json => {
     return json.data.products.edges[0].node.id;
   })
-  .catch(err => console.error(err));; 
+  .catch(err => console.error(err));
 
-  console.log(`returned:\n  ${product_id}\n`)
+  console.log(`returned:\n  ${product_id}\n`);
   return product_id;
 };

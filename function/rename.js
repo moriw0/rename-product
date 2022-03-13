@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 import { faker } from '@faker-js/faker';
 dotenv.config();
 
@@ -8,7 +8,7 @@ const { ACCEESS_TOKEN, SHOP } = process.env;
 const url = `https://${SHOP}/admin/api/2021-01/graphql.json`;
 
 export const renameFunction = async (product_id) => { 
-  console.log('renaming product...\n')
+  console.log('renaming product...\n');
 
   const randomTitle = faker.commerce.productName();
   const body = {
